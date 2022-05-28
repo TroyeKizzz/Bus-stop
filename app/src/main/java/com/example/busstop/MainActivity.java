@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         startGPS();
     }
 
-    public void fetchData() {
+    private void fetchData() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, this.url+"/stop-points",
                 response -> {
                     try {
@@ -69,7 +70,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             );
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 0, this);
+        TextView textViewLat = (TextView) findViewById(R.id.textViewLat);
+        TextView textViewLong = (TextView) findViewById(R.id.textViewLong);
+        TextView textViewStop = (TextView) findViewById(R.id.textViewStopMain);
+        textViewLat.setText(R.string.loading);
+        textViewLong.setText(R.string.loading);
+        textViewStop.setText(R.string.loading);
     }
 
 
@@ -101,6 +108,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
         this.closestStopId = closestStopId;
         this.closestStopName = closestStopName;
+    }
+
+    public void openSchedule (View view) {
+        Intent intent = new Intent(this, ScheduleActivity.class);
+        intent.putExtra("STOP_ID", this.closestStopId);
+        intent.putExtra("STOP_NAME", this.closestStopName);
+        startActivity(intent);
     }
 
     @Override

@@ -2,7 +2,8 @@
     <string name="app_name">Bus Stop</string>
     <string name="latitude">Lat:</string>
     <string name="longitude">Long:</string>
-    <string name="unknown">unknown</string>
+    <string name="unknown">Unknown</string>
+    <string name="loading">Loading</string>
     <string name="your_location">Your location</string>
     <string name="closest_stop">Closest bus stop</string>
     <string name="see_schedule">See schedule</string>
