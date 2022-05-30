@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bus Stop</string>
+    <string name="latitude">Долгота:</string>
+    <string name="longitude">Широта:</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="loading">Загрузка</string>
+    <string name="your_location">Ваше местоположение</string>
+    <string name="closest_stop">Ближайшая остановка</string>
+    <string name="see_schedule">Посмотреть расписание</string>
+    <string name="upcoming_buses">Пребывающие автобусы на</string>
+</resources>

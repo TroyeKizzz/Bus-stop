@@ -42,6 +42,27 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         startGPS();
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("userLat", this.userLat);
+        outState.putDouble("userLong", this.userLong);
+        outState.putString("closestStopId", this.closestStopId);
+        outState.putString("closestStopName", this.closestStopName);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            this.userLat = savedInstanceState.getDouble("userLat");
+            this.userLong = savedInstanceState.getDouble("userLong");
+            this.closestStopId = savedInstanceState.getString("closestStopId");
+            this.closestStopName = savedInstanceState.getString("closestStopName");
+            updateFields();
+        }
+    }
+
     private void fetchData() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, this.url+"/stop-points",
                 response -> {
@@ -117,13 +138,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         startActivity(intent);
     }
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-        this.userLat = location.getLatitude();
-        this.userLong = location.getLongitude();
-
-        fetchData();
-
+    private void updateFields () {
         TextView textViewLat = (TextView) findViewById(R.id.textViewLat);
         TextView textViewLong = (TextView) findViewById(R.id.textViewLong);
         TextView textViewStop = (TextView) findViewById(R.id.textViewStopMain);
@@ -131,5 +146,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         textViewLat.setText(String.format("%f", this.userLat));
         textViewLong.setText(String.format("%f", this.userLong));
         textViewStop.setText(this.closestStopName);
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        this.userLat = location.getLatitude();
+        this.userLong = location.getLongitude();
+
+        fetchData();
+        updateFields();
     }
 }

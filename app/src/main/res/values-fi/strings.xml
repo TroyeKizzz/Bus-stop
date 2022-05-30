@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bussipysäkki</string>
+    <string name="latitude">Lev:</string>
+    <string name="longitude">Pit:</string>
+    <string name="unknown">Tuntematon</string>
+    <string name="loading">Ladataan</string>
+    <string name="your_location">Sinun sijaintisi</string>
+    <string name="closest_stop">Lähin bussipysäkki</string>
+    <string name="see_schedule">Katso aikataulu</string>
+    <string name="upcoming_buses">Tulevista busseista</string>
+</resources>

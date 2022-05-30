@@ -59,7 +59,7 @@ public class ScheduleActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (result != "") {
+        if (!result.equals("")) {
             TextView textViewBusses = findViewById(R.id.textViewBusses);
             textViewBusses.setText(result);
         }
